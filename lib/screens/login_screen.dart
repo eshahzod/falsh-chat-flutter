@@ -71,10 +71,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   elevation: 5.0,
                   child: MaterialButton(
                     onPressed: () async {
+                      setState(() {
+                        spinner = true;
+                      });
                       try {
                         final user = await _auth.signInWithEmailAndPassword(
                             email: email, password: password);
+
                         Navigator.pushNamed(context, ChatScreen.id);
+                        setState(() {
+                          spinner = false;
+                        });
                       } catch (e) {
                         print(e);
                       }
