@@ -42,47 +42,51 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    print(size.width);
     return Scaffold(
       backgroundColor: animation.value,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0),
+        padding: const EdgeInsets.symmetric(horizontal: 5.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Hero(
-                  tag: 'logo',
-                  child: Container(
-                    child: Image.asset('images/logo.png'),
-                    height: 70,
-                  ),
-                ),
-                AnimatedTextKit(
-                  animatedTexts: [
-                    ColorizeAnimatedText(
-                      speed: Duration(milliseconds: 700),
-                      'Flash Chat ',
-                      colors: [
-                        Color.fromARGB(255, 32, 50, 58),
-                        Colors.purple,
-                        Colors.blue,
-                        Colors.yellow,
-                        Colors.red
-                      ],
-                      textStyle: TextStyle(
-                        fontFamily: 'Horizon',
-                        fontSize: 45.0,
-                        fontWeight: FontWeight.w900,
-                      ),
+            FittedBox(
+              child: Row(
+                children: <Widget>[
+                  Hero(
+                    tag: 'logo',
+                    child: SizedBox(
+                      height: 70,
+                      child: Image.asset('images/logo.png'),
                     ),
-                  ],
-                  isRepeatingAnimation: true,
-                ),
-              ],
+                  ),
+                  AnimatedTextKit(
+                    animatedTexts: [
+                      ColorizeAnimatedText(
+                        speed: const Duration(milliseconds: 700),
+                        'Flash Chat ',
+                        colors: [
+                          const Color.fromARGB(255, 32, 50, 58),
+                          Colors.purple,
+                          Colors.blue,
+                          Colors.yellow,
+                          Colors.red
+                        ],
+                        textStyle: const TextStyle(
+                          fontFamily: 'Horizon',
+                          fontSize: 45.0,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                    ],
+                    isRepeatingAnimation: true,
+                  ),
+                ],
+              ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 48.0,
             ),
             ReusableButton(
@@ -98,7 +102,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 Navigator.pushNamed(context, RegistrationScreen.id);
               },
               text: 'Register',
-            )
+            ),
           ],
         ),
       ),
